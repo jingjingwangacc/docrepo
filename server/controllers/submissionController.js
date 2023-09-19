@@ -18,11 +18,35 @@ submissionController.createSubmission = async (req, res, next) => {
         res.locals.submission = submission;
 
         return next();
-    }
-    catch (err) {
+    } catch (err) {
         return next({
             log: 'Failed to create new submission' + err,
             mesaage: { err: 'Failed to create new submission.' }
+        });
+    }
+};
+
+submissionController.getSubmission = async (req, res, next) => {
+    const submissionId = req.params.submissionId;
+    console.log("Get submission with Id: ", submissionId);
+    try {
+        // Create a new submission object.
+        const submissions = await submissionModel.getSubmissionById(submissionId);
+
+        if (submissions.length === 0) {
+            return next({
+                log: 'Submission Id not found: ' + submissionId,
+                message: { err: 'Submission Id not found: ' + submissionId }
+            });
+        }
+
+        // Insert it into the database.
+        res.locals.submission = submissions[0];
+        return next();
+    } catch (err) {
+        return next({
+            log: 'Failed to get submission by Id ' + submissionId + ': ' + err,
+            mesaage: { err: 'Failed to get submission.' }
         });
     }
 };

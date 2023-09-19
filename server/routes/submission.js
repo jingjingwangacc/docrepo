@@ -9,4 +9,9 @@ router.post('/',
   (req, res) => res.status(200).json(res.locals.submission)
 );
 
+router.get('/:submissionId',
+  submissionController.getSubmission,
+  (req, res) => res.status(200).json(res.locals.submission)
+);
+
 module.exports = router;
