@@ -42,6 +42,10 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
+      '/user/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
       '/assets/**': {
         target: 'http://localhost:3000/',
         secure: false,
