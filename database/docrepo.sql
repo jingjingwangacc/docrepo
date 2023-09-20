@@ -8,7 +8,7 @@ DROP TYPE IF EXISTS submission_state;
 
 /* A user of the system */
 CREATE TABLE public.users (
-    user_id SERIAL UNIQUE NOT NULL,
+    user_id BIGSERIAL UNIQUE NOT NULL,
     user_name VARCHAR(32),
     user_pwd VARCHAR(32),
     PRIMARY KEY(user_id)
