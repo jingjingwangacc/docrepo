@@ -64,7 +64,7 @@ class MyComponent extends Component {
       },
       body: JSON.stringify({
         userId: 1,
-        description: "my test submission",
+        submissionDescription: "my test submission",
         reviewerIds: [2, 3]
 
       })

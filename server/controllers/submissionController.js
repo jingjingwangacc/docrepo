@@ -10,12 +10,12 @@ submissionController.createSubmission = async (req, res, next) => {
         const submission = submissionModel.newSubmissionObject();
 
         // Set submission information.
-        submission.author_id = req.body.userId;
-        submission.submission_description = req.body.description;
+        submission.authorId = req.body.userId;
+        submission.submissionDescription = req.body.submissionDescription;
         if (req.body.reviewerIds) {
-            submission.reviewer_ids = req.body.reviewerIds;
+            submission.reviewerIds = req.body.reviewerIds;
         } else {
-            submission.reviewer_ids = [];
+            submission.reviewerIds = [];
         }
 
         // Insert it into the database.
@@ -47,46 +47,46 @@ submissionController.getSubmission = async (req, res, next) => {
         console.log("Submission: ", submission);
 
         // Retrieve author's name, and reviewers' names.
-        const userIds = [submission.author_id]
-        for (let i = 0; i < submission.reviewer_ids.length; ++i) {
-            userIds.push(submission.reviewer_ids[i]);
+        const userIds = [submission.authorId]
+        for (let i = 0; i < submission.reviewerIds.length; ++i) {
+            userIds.push(submission.reviewerIds[i]);
         }
         const userIdToName = await userModel.getUserNameByIds(userIds);
         console.log("Map: ", userIdToName);
 
         // Assign author name.
-        if (!(submission.author_id in userIdToName)) {
+        if (!(submission.authorId in userIdToName)) {
             return next({
-                log: "Cannot find author Id: " + submission.author_id,
+                log: "Cannot find author Id: " + submission.authorId,
                 message: { err: 'Error while getting submission.' }
             });
         }
-        submission.author_name = userIdToName[submission.author_id];
+        submission.authorName = userIdToName[submission.authorId];
         
         // Assign reviewer names.
-        submission.reviewer_names = [];
-        for (let i = 0; i < submission.reviewer_ids.length; ++i) {
-            let reviewerId = submission.reviewer_ids[i];
+        submission.reviewerNames = [];
+        for (let i = 0; i < submission.reviewerIds.length; ++i) {
+            let reviewerId = submission.reviewerIds[i];
             if (!(reviewerId in userIdToName)) {
                 return next({
                     log: "Cannot find reviewer Id: " + reviewerId,
                     message: { err: 'Error while getting submission.' }
                 });
             }
-            submission.reviewer_names.push(userIdToName[reviewerId]);
+            submission.reviewerNames.push(userIdToName[reviewerId]);
         }
 
         // Assign approved reviewer names.
-        submission.approved_reviewer_names = [];
-        for (let i = 0; i < submission.approved_reviewer_ids.length; ++i) {
-            let reviewerId = submission.approved_reviewer_ids[i];
+        submission.approvedReviewerNames = [];
+        for (let i = 0; i < submission.approvedReviewerIds.length; ++i) {
+            let reviewerId = submission.approvedReviewerIds[i];
             if (!(reviewerId in userIdToName)) {
                 return next({
                     log: "Cannot find reviewer Id: " + reviewerId,
                     message: { err: 'Error while getting submission.' }
                 });
             }
-            submission.approved_reviewer_names.push(userIdToName[reviewerId]);
+            submission.approvedReviewerNames.push(userIdToName[reviewerId]);
         }
 
         res.locals.submission = submission;
