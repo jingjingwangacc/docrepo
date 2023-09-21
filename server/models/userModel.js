@@ -28,8 +28,7 @@ userModel.insertNewUser = async (user) => {
     params = [user.userName, user.userPwd];
 
     const result = await db.query(queryString, params);
-    console.log(result.rows);
-    user.userId = result.rows[0].id;
+    user.userId = result.rows[0].userId;
 }
 
 // Get a single user's name by the Id. Return null if not found.
