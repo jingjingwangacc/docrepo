@@ -64,6 +64,7 @@ submissionModel.insertNewSubmission = async (submission) => {
 submissionModel.getSubmissionById = async (submissionId) => {
     const queryString =
         `SELECT
+            submission_id AS "submissionId",
             submission_state AS "submissionState",
             author_id AS "authorId",
             reviewer_ids AS "reviewerIds",

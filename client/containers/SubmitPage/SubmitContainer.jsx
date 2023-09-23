@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProjectInfo from '../../components/SubmitPage/ProjectInfo';
 import Reviewer from '../../components/SubmitPage/Reviewer';
 import ActionButtons from '../../components/SubmitPage/ActionButtons';
-import {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } from '../../slice/slice';
+import { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } from '../../slice/submitSlice';
 // import from child components...
 
 const SubmitContainer = () => {
@@ -52,7 +52,7 @@ const SubmitContainer = () => {
                 deadline: pageState.deadline,
                 submissionDescription: pageState.description,
                 reviewerNameList: pageState.reviewerList
-            
+
             })
         })
             .then(res => res.json())
@@ -74,11 +74,11 @@ const SubmitContainer = () => {
                 description={pageState.description} handleChangeDescription={handleChangeDescription}
                 deadline={pageState.deadline} handleChangeDeadline={handleChangeDeadline} />
             <Reviewer
-            reviewerList={pageState.reviewerList}
-            newReviewer={pageState.newReviewer}
-            handleChangeReviewer={handleChangeReviewer}
-            handleAddReviewer={handleAddReviewer}
-            handleDeleteReviewer={handleDeleteReviewer}
+                reviewerList={pageState.reviewerList}
+                newReviewer={pageState.newReviewer}
+                handleChangeReviewer={handleChangeReviewer}
+                handleAddReviewer={handleAddReviewer}
+                handleDeleteReviewer={handleDeleteReviewer}
             />
             <ActionButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />
         </div>
