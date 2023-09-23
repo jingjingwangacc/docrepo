@@ -11,7 +11,10 @@ submissionController.createSubmission = async (req, res, next) => {
 
         // Set submission information.
         submission.authorId = req.body.userId;
+        submission.projectName = req.body.projectName;
+        submission.clientName = req.body.clientName;
         submission.submissionDescription = req.body.submissionDescription;
+        submission.deadline = req.body.deadline;
         if (req.body.reviewerIds) {
             submission.reviewerIds = req.body.reviewerIds;
         } else {

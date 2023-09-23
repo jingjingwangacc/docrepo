@@ -1,30 +1,23 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+/**
+ * ************************************
+ *
+ * @module  App.jsx
+ * @author
+ * @date
+ * @description
+ *
+ * ************************************
+ */
 
-import MyComponent from "./components/MyComponent"
+import React from 'react';
+import MainContainer from "./containers/SubmitPage/MainContainer"
 
-// import './stylesheets/styles.css';
-
-const App = props => {
-  return (
-    <div className="router">
-      <main>
-        {/*
-            NOTE: The syntax below is for React-Router
-              - A helpful library for routing with a React app.
-              You can learn more about this at:
-              https://reacttraining.com/react-router/web/guides/quick-start
-        */}
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={MyComponent}
-          />
-        </Switch>
-      </main>
-    </div>
-  );
-};
+const App = () => {
+    return (
+        <div>
+            <MainContainer />
+        </div>
+    );
+}
 
 export default App;
