@@ -38,11 +38,7 @@ module.exports = {
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/submission/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
-      '/user/**': {
+      '/api/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },

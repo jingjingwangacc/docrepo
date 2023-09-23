@@ -4,7 +4,8 @@ const Reviewer = props => {
     const reviewerList = [];
     for (let i = 0; i < props.reviewerList.length; i++) {
         reviewerList.push((<div>
-            <button>{props.reviewerList[i]}</button>
+            <label>{props.reviewerList[i]}</label>
+            <button onClick={() => props.handleDeleteReviewer(i)}>-</button>
         </div>));
     }
     return (

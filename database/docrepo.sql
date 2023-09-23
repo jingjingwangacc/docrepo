@@ -92,3 +92,9 @@ CREATE TABLE public.comments (
 -- ) WITH (
 --   OIDS=FALSE
 -- );
+
+INSERT INTO users (user_name, user_pwd) VALUES ('user1', 'pwd1');
+INSERT INTO users (user_name, user_pwd) VALUES ('user2', 'pwd2');
+INSERT INTO users (user_name, user_pwd) VALUES ('user3', 'pwd3');
+INSERT INTO users (user_name, user_pwd) VALUES ('user4', 'pwd4');
+SELECT * FROM users;

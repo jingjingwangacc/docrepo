@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProjectInfo from '../../components/SubmitPage/ProjectInfo';
 import Reviewer from '../../components/SubmitPage/Reviewer';
 import ActionButtons from '../../components/SubmitPage/ActionButtons';
-import {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer } from '../../slice/slice';
+import {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } from '../../slice/slice';
 // import from child components...
 
 const MainContainer = () => {
@@ -35,8 +35,12 @@ const MainContainer = () => {
         dispatch(addReviewer());
     };
 
+    const handleDeleteReviewer = (index) => {
+        dispatch(deleteReviewer(index));
+    };
+
     const handleSubmit = () => {
-        fetch('/submission', {
+        fetch('/api/submission', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +51,8 @@ const MainContainer = () => {
                 clientName: pageState.clientName,
                 deadline: pageState.deadline,
                 submissionDescription: pageState.description,
-                reviewerIds: [2, 3]
+                reviewerNameList: pageState.reviewerList
+            
             })
         })
             .then(res => res.json())
@@ -73,6 +78,7 @@ const MainContainer = () => {
             newReviewer={pageState.newReviewer}
             handleChangeReviewer={handleChangeReviewer}
             handleAddReviewer={handleAddReviewer}
+            handleDeleteReviewer={handleDeleteReviewer}
             />
             <ActionButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />
         </div>

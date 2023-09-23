@@ -22,8 +22,8 @@ app.use(express.static(path.resolve(__dirname, '../client')));
 /**
  * define route handlers
  */
-app.use('/submission', submissionRouter);
-app.use('/user', userRouter);
+app.use('/api/submission', submissionRouter);
+app.use('/api/user', userRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

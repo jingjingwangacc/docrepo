@@ -15,11 +15,7 @@ submissionController.createSubmission = async (req, res, next) => {
         submission.clientName = req.body.clientName;
         submission.submissionDescription = req.body.submissionDescription;
         submission.deadline = req.body.deadline;
-        if (req.body.reviewerIds) {
-            submission.reviewerIds = req.body.reviewerIds;
-        } else {
-            submission.reviewerIds = [];
-        }
+        submission.reviewerIds = await userModel.getUserIdByName(req.body.reviewerNameList)
 
         // Insert it into the database.
         await submissionModel.insertNewSubmission(submission);

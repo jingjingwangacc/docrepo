@@ -32,9 +32,12 @@ const submitSlice = createSlice({
             state.reviewerList.push(state.newReviewer);
             state.newReviewer = "";
          },
+         deleteReviewer: (state, {payload: deletedId}) => {
+            state.reviewerList.splice(deletedId, 1);
+         },
     }
 });
 
-export const {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer } = submitSlice.actions
+export const {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } = submitSlice.actions
 
 export default submitSlice.reducer

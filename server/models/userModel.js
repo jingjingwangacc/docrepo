@@ -44,6 +44,23 @@ userModel.getUserNameById = async (userId) => {
     }
 }
 
+userModel.getUserIdByName = async (reviewerNameList) => {
+    const reviewerIdList = [];
+    for (let i = 0; i < reviewerNameList.length; i++) {
+        const queryString =
+            `SELECT user_id AS "userId" FROM users WHERE users.user_name = $1`;
+        const params = [reviewerNameList[i]];
+        const results = await db.query(queryString, params);
+        console.log("To query user name: ", params[0], "got: ", results.rows);
+        if (results.rows.length === 0) {
+            return null;
+        } else {
+            reviewerIdList.push(results.rows[0].userId);
+        }
+    }
+    return reviewerIdList;
+}
+
 // Get multiple users' names by their Ids. Accept an array of user Ids, and
 // return an object where keys are user Ids and values are user nanms.
 // If some user Ids are not found, that user Id key will be missing in the returned object.
