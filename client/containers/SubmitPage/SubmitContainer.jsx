@@ -6,7 +6,7 @@ import ActionButtons from '../../components/SubmitPage/ActionButtons';
 import {setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } from '../../slice/slice';
 // import from child components...
 
-const MainContainer = () => {
+const SubmitContainer = () => {
     // add pertinent state here
     const pageState = useSelector(state => state.submit);
     const dispatch = useDispatch();
@@ -85,4 +85,4 @@ const MainContainer = () => {
     );
 };
 
-export default MainContainer;
+export default SubmitContainer;

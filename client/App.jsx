@@ -6,16 +6,32 @@
  * @date
  * @description
  *
- * ************************************
- */
+* ************************************
+*/
 
 import React from 'react';
-import MainContainer from "./containers/SubmitPage/MainContainer"
+import { Switch, Route } from 'react-router-dom';
+import HomeContainer from "./containers/HomePage/HomeContainer"
+import SubmitContainer from "./containers/SubmitPage/SubmitContainer"
+import ReviewContainer from "./containers/ReviewPage/ReviewContainer"
 
 const App = () => {
     return (
         <div>
-            <MainContainer />
+            <Switch>
+                <Route
+                    exact path="/"
+                    component={HomeContainer}
+                    />
+                <Route
+                    exact path="/submit"
+                    component={SubmitContainer}
+                />
+                <Route
+                    exact path="/review/:id"
+                    component={ReviewContainer}
+                />
+            </Switch>
         </div>
     );
 }
