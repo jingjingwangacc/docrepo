@@ -46,6 +46,10 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
+      '/view_plan/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
     },
   },
   module: {

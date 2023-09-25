@@ -5,6 +5,7 @@ const app = express();
 
 const submissionRouter = require('./routes/submission');
 const userRouter = require('./routes/user');
+const fileRouter = require('./routes/file');
 
 const PORT = 3000;
 
@@ -17,13 +18,15 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * handle requests for static files
  */
-app.use(express.static(path.resolve(__dirname, '../client')));
+app.use('/view_plan', express.static(path.resolve(__dirname, '../uploads')));
+app.use('/', express.static(path.resolve(__dirname, '../client')));
 
 /**
  * define route handlers
  */
 app.use('/api/submission', submissionRouter);
 app.use('/api/user', userRouter);
+app.use('/api/file', fileRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

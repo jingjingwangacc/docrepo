@@ -7,6 +7,7 @@ const initialState = {
    deadline: "",
    reviewerList: [],
    newReviewer: "",
+   fileList: [],
 };
 const submitSlice = createSlice({
    name: 'newSubmit',
@@ -35,9 +36,31 @@ const submitSlice = createSlice({
       deleteReviewer: (state, { payload: deletedId }) => {
          state.reviewerList.splice(deletedId, 1);
       },
+      addFile: (state, { payload: newFileName }) => {
+         state.fileList.push({
+            fileName: newFileName,
+            uploadCompleted: false,
+            fileId: -1
+         });
+      },
+      setFileUploadCompleted: (state, { payload: fileNameAndId }) => {
+         for (let i = 0; i < state.fileList.length; ++i) {
+            if (state.fileList[i].fileName === fileNameAndId.fileName) {
+               state.fileList[i].uploadCompleted = true;
+               state.fileList[i].fileId = fileNameAndId.fileId;
+               break;
+            }
+         }
+      },
+      deleteFile: (state, { payload: deletedId }) => {
+         state.fileList.splice(deletedId, 1);
+      }
    }
 });
 
-export const { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } = submitSlice.actions
+export const {
+   setProjectName, setClientName, setDescription, setDeadline,
+   setReviewer, addReviewer, deleteReviewer,
+   setFile, addFile, setFileUploadCompleted, deleteFile } = submitSlice.actions
 
 export default submitSlice.reducer

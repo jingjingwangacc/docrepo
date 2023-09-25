@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProjectInfo from '../../components/SubmitPage/ProjectInfo';
 import Reviewer from '../../components/SubmitPage/Reviewer';
+import AddFile from '../../components/SubmitPage/AddFile';
 import ActionButtons from '../../components/SubmitPage/ActionButtons';
-import { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer } from '../../slice/submitSlice';
-// import from child components...
+import { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer, addFile, setFileUploadCompleted, deleteFile } from '../../slice/submitSlice';
 
 const SubmitContainer = () => {
     // add pertinent state here
@@ -38,6 +38,42 @@ const SubmitContainer = () => {
     const handleDeleteReviewer = (index) => {
         dispatch(deleteReviewer(index));
     };
+
+    const handleAddFile = (e) => {
+        // 1. Get file object and its name.
+        const fileObj = e.target.files[0];
+        const fileName = fileObj.name;
+        console.log(fileObj);
+        console.log(fileName);
+
+        // 2. Update state.
+        dispatch(addFile(fileName));
+
+        //3. Post to server
+        let formData = new FormData();
+        formData.append("fileName", fileName)
+        formData.append("file", fileObj);
+
+        fetch('/api/file', {
+            method: "POST",
+            body: formData,
+        })
+            // 4. When upload completed, change state again
+            .then(res => res.json())
+            .then(res => {
+                console.log("Completed: ", res);
+                dispatch(setFileUploadCompleted(
+                    {
+                        fileName: fileName,
+                        fileId: res.fileId
+                    }));
+            });
+
+    }
+
+    const handleDeleteFile = (index) => {
+        dispatch(deleteFile(index));
+    }
 
     const handleSubmit = () => {
         fetch('/api/submission', {
@@ -79,6 +115,11 @@ const SubmitContainer = () => {
                 handleChangeReviewer={handleChangeReviewer}
                 handleAddReviewer={handleAddReviewer}
                 handleDeleteReviewer={handleDeleteReviewer}
+            />
+            <AddFile
+                fileList={pageState.fileList}
+                handleAddFile={handleAddFile}
+                handleDeleteFile={handleDeleteFile}
             />
             <ActionButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />
         </div>
