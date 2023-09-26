@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' });
 router.post('/',
     upload.single('file'),
     fileController.handleUpload,
-    (req, res) => res.status(200).json({ fileId: res.locals.fileId })
+    (req, res) => res.status(200).json({ fileId: res.locals.file.fileId })
 );
 
 module.exports = router;

@@ -9,7 +9,7 @@ DROP TYPE IF EXISTS submission_state;
 /* A user of the system */
 CREATE TABLE public.users (
     user_id BIGSERIAL UNIQUE NOT NULL,
-    user_name VARCHAR(32),
+    user_name VARCHAR(32) UNIQUE,
     user_pwd VARCHAR(32),
     PRIMARY KEY(user_id)
 ) WITH (
@@ -32,9 +32,9 @@ CREATE TABLE public.submissions (
     creation_timestamp TIMESTAMP NOT NULL,
     deadline TIMESTAMP,
     submission_timestamp TIMESTAMP,
-    files BIGINT[],
+    file_ids BIGINT[],
     -- file_versions BIGINT[],
-    comments BIGINT[],
+    comment_ids BIGINT[],
     PRIMARY KEY(submission_id)
 ) WITH (
   OIDS=FALSE
@@ -43,9 +43,9 @@ CREATE TABLE public.submissions (
 /* A file in repo */
 CREATE TABLE public.files (
     file_id BIGSERIAL UNIQUE NOT NULL,
-    repo_path VARCHAR(1024) UNIQUE NOT NULL,
+    file_name VARCHAR(100) NOT NULL,
+    approved_file_path VARCHAR(1024) NOT NULL,
     submission_state SUBMISSION_STATE NOT NULL,
-    file_checksum VARCHAR(32),
     pending_path VARCHAR(1024),
     -- current_version BIGINT NOT NULL,
     -- past_versions BIGINT[],

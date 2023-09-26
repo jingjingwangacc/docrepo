@@ -1,5 +1,6 @@
 const submissionModel = require('../models/submissionModel.js');
 const userModel = require('../models/userModel.js');
+const fileModel = require('../models/fileModel.js');
 
 const submissionController = {};
 
@@ -8,14 +9,18 @@ submissionController.createSubmission = async (req, res, next) => {
     try {
         // Create a new submission object.
         const submission = submissionModel.newSubmissionObject();
-
+        let fileIds = [];
+        for (let i = 0; i < req.body.fileList.length; i++) {
+            fileIds.push(req.body.fileList[i].fileId);
+        }
         // Set submission information.
         submission.authorId = req.body.userId;
         submission.projectName = req.body.projectName;
         submission.clientName = req.body.clientName;
         submission.submissionDescription = req.body.submissionDescription;
         submission.deadline = req.body.deadline;
-        submission.reviewerIds = await userModel.getUserIdByName(req.body.reviewerNameList)
+        submission.reviewerIds = await userModel.getUserIdByName(req.body.reviewerNameList);
+        submission.fileIds = fileIds;
 
         // Insert it into the database.
         await submissionModel.insertNewSubmission(submission);
@@ -87,6 +92,11 @@ submissionController.getSubmission = async (req, res, next) => {
             }
             submission.approvedReviewerNames.push(userIdToName[reviewerId]);
         }
+
+        // Get pending file paths.
+        const pendingFilePaths = await fileModel.getPendingFilePathById(submission.fileIds);
+        submission.pendingFilePaths = pendingFilePaths;
+        console.log("Submission = ", submission);
 
         res.locals.submission = submission;
         return next();

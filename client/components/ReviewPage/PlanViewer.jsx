@@ -1,10 +1,18 @@
 import React from 'react';
 
 const PlanViewer = props => {
+  const plans = [];
+  for (let i = 0; i < props.fileURLs.length; ++i) {
+    plans.push((
+      <div>
+        <object data={"/" + props.fileURLs[i]} type="application/pdf" />
+      </div>
+    ));
+  }
   return (
     <div>
       <h2>Plan Viewer</h2>
-      <object data="/view_plan/6c355315a62ef383ed5382a14b4326b6.pdf" type="application/pdf" width="800" height="500" />
+      {plans}
     </div >
   );
 };

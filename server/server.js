@@ -18,7 +18,16 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * handle requests for static files
  */
-app.use('/view_plan', express.static(path.resolve(__dirname, '../uploads')));
+
+// Serve uploads, and set content-type to pdf.
+app.use('/uploads', express.static(path.resolve(__dirname, '../uploads'),
+  {
+    setHeaders: (res, path, stat) => {
+      console.log("Setting header on:", path);
+      res.setHeader('Content-Type', 'application/pdf');
+    }
+  }));
+
 app.use('/', express.static(path.resolve(__dirname, '../client')));
 
 /**

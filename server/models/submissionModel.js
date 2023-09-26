@@ -30,8 +30,8 @@ submissionModel.newSubmissionObject = () => {
         creationTimestamp: new Date().toISOString(),
         deadline: null,
         submissionTimestamp: null,
-        files: [],
-        comments: []
+        fileIds: [],
+        commentIds: []
     };
 }
 
@@ -46,15 +46,15 @@ submissionModel.insertNewSubmission = async (submission) => {
         INSERT INTO submissions
             (submission_state, author_id, reviewer_ids, approved_reviewer_ids,
             project_name, client_name, submission_description,
-            creation_timestamp, deadline, submission_timestamp, files, comments)
+            creation_timestamp, deadline, submission_timestamp, file_ids, comment_ids)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
         RETURNING submission_id AS "submissionId"`;
     params = [submission.submissionState, submission.authorId,
     submission.reviewerIds, submission.approvedReviewerIds,
     submission.projectName, submission.clientName,
     submission.submissionDescription, submission.creationTimestamp,
-    submission.deadline, submission.submissionTimestamp, submission.files,
-    submission.comments];
+    submission.deadline, submission.submissionTimestamp, submission.fileIds,
+    submission.commentIds];
 
     const result = await db.query(queryString, params);
     submission.submissionId = result.rows[0].submissionId;
@@ -75,8 +75,8 @@ submissionModel.getSubmissionById = async (submissionId) => {
             creation_timestamp AS "creationTimestamp",
             deadline,
             submission_timestamp AS "submissionTimestamp",
-            files,
-            comments
+            file_ids AS "fileIds",
+            comment_ids AS "commentIds"
         FROM submissions
         WHERE submissions.submission_id = $1`;
     const params = [submissionId];
@@ -98,8 +98,8 @@ submissionModel.getSubmissionByAuthor = async (authorId, numResults = 10) => {
             creation_timestamp AS "creationTimestamp",
             deadline,
             submission_timestamp AS "submissionTimestamp",
-            files,
-            comments
+            file_ids AS "fileIds",
+            comment_ids AS "commentIds"
         FROM submissions
         WHERE
             submissions.author_id = $1
@@ -124,8 +124,8 @@ submissionModel.getSubmissionByAuthorAndState = async (authorId, state = PENDING
             creation_timestamp AS "creationTimestamp",
             deadline,
             submission_timestamp AS "submissionTimestamp",
-            files,
-            comments
+            file_ids AS "fileIds",
+            comment_ids AS "commentIds"
         FROM submissions
         WHERE
             submissions.author_id = $1 AND

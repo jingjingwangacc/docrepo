@@ -9,6 +9,7 @@ const initialState = {
     description: "",
     deadline: "",
     reviewerList: [],
+    fileURLs: [],
     comments: []
 };
 const reviewSlice = createSlice({

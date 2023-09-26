@@ -51,7 +51,6 @@ const SubmitContainer = () => {
 
         //3. Post to server
         let formData = new FormData();
-        formData.append("fileName", fileName)
         formData.append("file", fileObj);
 
         fetch('/api/file', {
@@ -87,8 +86,8 @@ const SubmitContainer = () => {
                 clientName: pageState.clientName,
                 deadline: pageState.deadline,
                 submissionDescription: pageState.description,
-                reviewerNameList: pageState.reviewerList
-
+                reviewerNameList: pageState.reviewerList,
+                fileList: pageState.fileList
             })
         })
             .then(res => res.json())
