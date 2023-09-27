@@ -42,11 +42,11 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/assets/**': {
+      '/uploads/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/uploads/**': {
+      '/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },

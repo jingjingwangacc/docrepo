@@ -1,0 +1,210 @@
+.submitContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -260px;
+    margin-top: -300px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px 0px;
+    border-radius: 20px;
+    position: relative;
+    padding: 20px;
+    font-size: 14px;
+    width: 520px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.submitComponent {
+    margin-bottom: 20px;
+}
+
+.submitTitle {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.submitTitleLabel {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(60, 60, 60);
+}
+
+.labeledInput {
+    margin: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-color: rgb(208, 207, 208);
+    border-style: solid;
+    align-items: center;
+    border-width: 1px;
+    border-radius: 8px;
+    color: rgb(44, 19, 56);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+}
+
+.submitInput {
+    width: 300px;
+    height: 40px;
+    border: none;
+    font-size: 18px;
+    border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: 'Helvetica';
+    transition: background-color 0.15s;
+}
+
+.submitInput:hover {
+    background-color: rgba(195, 183, 183, 0.2);
+}
+
+.submitLabel {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: grey;
+}
+
+.inputButton {
+    background-color: rgb(29, 155, 240);
+    color: white;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+}
+
+.inputButton:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.submitReviewerList {
+    margin-left: 12px;
+    margin-right: 12px;
+    border: none;
+    align-items: center;
+    border-width: 1px;
+    color: rgb(44, 19, 56);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.submitReviewer {
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 25px;
+    padding-left: 20px;
+    padding-right: 10px;
+    border-color: rgb(29, 155, 240);
+    border-style: solid;
+    align-items: center;
+    border-width: 3px;
+    border-radius: 20px;
+    color: rgb(44, 19, 56);
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+}
+
+.reviewerName {
+    color: rgb(29, 155, 240);
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.removeButton {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    transition: color 0.15s;
+}
+
+.removeButton:hover {
+    color: grey;
+}
+
+.removeButton:active {
+    color: black;
+}
+
+.fileUpload {
+    background-color: rgb(29, 155, 240);
+    height: 50px;
+    color: white;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+}
+
+.fileUpload:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.fileUploadButton {
+    display:none
+}
+
+.submitFileList {
+    margin-top: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+    border: none;
+    align-items: center;
+    border-width: 1px;
+    color: rgb(44, 19, 56);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.submitFile {
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 10px;
+    border-color: rgb(29, 155, 240);
+    border-style: solid;
+    align-items: center;
+    border-width: 3px;
+    border-radius: 20px;
+    color: rgb(44, 19, 56);
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+}
+
+.submitFileState {
+    margin-right: 10px;
+}

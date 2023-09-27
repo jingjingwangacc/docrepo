@@ -17,22 +17,20 @@ import ReviewContainer from "./containers/ReviewPage/ReviewContainer"
 
 const App = () => {
     return (
-        <div>
-            <Switch>
-                <Route
-                    exact path="/"
-                    component={HomeContainer}
-                    />
-                <Route
-                    exact path="/submit"
-                    component={SubmitContainer}
-                />
-                <Route
-                    exact path="/review/:id"
-                    component={ReviewContainer}
-                />
-            </Switch>
-        </div>
+        <Switch>
+            <Route
+                exact path="/"
+                component={HomeContainer}
+            />
+            <Route
+                exact path="/submit"
+                component={SubmitContainer}
+            />
+            <Route
+                exact path="/review/:id"
+                component={ReviewContainer}
+            />
+        </Switch>
     );
 }
 

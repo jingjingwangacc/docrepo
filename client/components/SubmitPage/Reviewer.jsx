@@ -3,19 +3,22 @@ import React from 'react';
 const Reviewer = props => {
     const reviewerList = [];
     for (let i = 0; i < props.reviewerList.length; i++) {
-        reviewerList.push((<div>
-            <label>{props.reviewerList[i]}</label>
-            <button onClick={() => props.handleDeleteReviewer(i)}>-</button>
-        </div>));
+        reviewerList.push(
+            <div className='submitReviewer'>
+                <label className='reviewerName'>{props.reviewerList[i]}</label>
+                <button className='removeButton' onClick={() => props.handleDeleteReviewer(i)}>X</button>
+            </div>);
     }
     return (
-        <div>
-            <label>Reviewers:</label>
-            <div>
-                <input onChange={(e) => props.handleChangeReviewer(e)} value={props.newReviewer}></input>
-                <button onClick={() => props.handleAddReviewer()}>add</button>
+        <div className='submitComponent'>
+            <div className='submitTitle'>
+                <label className='submitTitleLabel'>Reviewers:</label>
             </div>
-            <div>
+            <div className='labeledInput'>
+                <input className='submitInput' onChange={(e) => props.handleChangeReviewer(e)} value={props.newReviewer}></input>
+                <button className='inputButton' onClick={() => props.handleAddReviewer()}>add</button>
+            </div>
+            <div className='submitReviewerList'>
                 {reviewerList}
             </div>
 

@@ -4,19 +4,24 @@ const AddFile = props => {
     const fileList = [];
     for (let i = 0; i < props.fileList.length; i++) {
         fileList.push((
-            <div>
+            <div className='submitFile'>
                 <label>{props.fileList[i].fileName}</label>
-                <label>{props.fileList[i].uploadCompleted ? "[Uploaded]" : "[Uploading...]"}</label>
-                <button onClick={() => props.handleDeleteFile(i)}>-</button>
+                <div className='submitFileStateAndButton'>
+                    <label class='submitFileState'>{props.fileList[i].uploadCompleted ? "[Uploaded]" : "[Uploading...]"}</label>
+                    <button class='removeButton' onClick={() => props.handleDeleteFile(i)}>X</button>
+                </div>
             </div>));
     }
     return (
-        <div>
-            <label>Files to submit:</label>
-            <div>
-                <input type="file" onChange={(e) => props.handleAddFile(e)}></input>
+        <div className='submitComponent'>
+            <div className="submitTitle">
+                <label className='submitTitleLabel'>Files to Submit</label>
             </div>
-            <div>
+            <label className='fileUpload'>
+                <input className='fileUploadButton' type="file" onChange={(e) => props.handleAddFile(e)}></input>
+                Upload File
+            </label>
+            <div className='submitFileList'>
                 {fileList}
             </div>
 

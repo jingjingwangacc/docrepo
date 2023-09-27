@@ -102,7 +102,7 @@ const SubmitContainer = () => {
 
 
     return (
-        <div className="mainContainer">
+        <div className="submitContainer">
             <ProjectInfo
                 projectName={pageState.projectName} handleChangeProjectName={handleChangeProjectName}
                 clientName={pageState.clientName} handleChangeClientName={handleChangeClientName}
