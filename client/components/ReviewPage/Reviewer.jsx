@@ -6,7 +6,7 @@ const Reviewer = props => {
         reviewerList.push((<div><label>{props.reviewerList[i]}</label></div>));
     }
     return (
-        <div>
+        <div className='reviewReviewerInfo'>
             <h2>Reviewers:</h2>
             <div>
                 {reviewerList}

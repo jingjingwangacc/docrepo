@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProjectInfo = props => {
   return (
-    <div>
+    <div className='reviewProjectInfo'>
       <h2>Project Info</h2>
       <div>
         <label>Project Name: </label>

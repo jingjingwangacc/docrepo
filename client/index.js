@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import App from './App.jsx';
 import {store} from './store.js';
 import { BrowserRouter } from 'react-router-dom';
+import './styles.css';
 
 const root = createRoot(document.getElementById('contents'));
 root.render(

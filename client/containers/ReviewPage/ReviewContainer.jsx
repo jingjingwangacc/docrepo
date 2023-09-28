@@ -66,16 +66,18 @@ const ReviewContainer = (props) => {
     }
 
     return (
-        <div className="mainContainer">
+        <div className='reviewContainer'>
             <BasicInfo
                 submissionId={pageState.submissionId}
                 authorName={pageState.authorName} />
-            <ProjectInfo
-                projectName={pageState.projectName}
-                clientName={pageState.clientName}
-                description={pageState.description}
-                deadline={pageState.deadline} />
-            <Reviewer reviewerList={pageState.reviewerList} />
+            <div className='reviewProject'>
+                <ProjectInfo
+                    projectName={pageState.projectName}
+                    clientName={pageState.clientName}
+                    description={pageState.description}
+                    deadline={pageState.deadline} />
+                <Reviewer reviewerList={pageState.reviewerList} />
+            </div>
             <PlanViewer fileURLs={pageState.fileURLs} />
             <Comment />
         </div>

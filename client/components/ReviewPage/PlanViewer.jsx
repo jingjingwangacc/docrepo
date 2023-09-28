@@ -5,13 +5,12 @@ const PlanViewer = props => {
   for (let i = 0; i < props.fileURLs.length; ++i) {
     plans.push((
       <div>
-        <object data={"/" + props.fileURLs[i]} type="application/pdf" />
+        <object className='reviewPdfViewer' data={"/" + props.fileURLs[i]} type="application/pdf" />
       </div>
     ));
   }
   return (
-    <div>
-      <h2>Plan Viewer</h2>
+    <div className='reviewPlans'>
       {plans}
     </div >
   );
