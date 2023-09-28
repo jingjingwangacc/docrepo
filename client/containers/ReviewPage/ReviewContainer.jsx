@@ -30,7 +30,7 @@ const ReviewContainer = (props) => {
                     description: res.submissionDescription,
                     deadline: res.deadline,
                     reviewerList: res.reviewerNames,
-                    fileURLs: res.pendingFilePaths
+                    fileList: res.fileList
                 }));
             });
     })
@@ -78,7 +78,7 @@ const ReviewContainer = (props) => {
                     deadline={pageState.deadline} />
                 <Reviewer reviewerList={pageState.reviewerList} />
             </div>
-            <PlanViewer fileURLs={pageState.fileURLs} />
+            <PlanViewer fileList={pageState.fileList} />
             <Comment />
         </div>
     );

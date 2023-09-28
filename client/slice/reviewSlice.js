@@ -9,7 +9,8 @@ const initialState = {
     description: "",
     deadline: "",
     reviewerList: [],
-    fileURLs: [],
+    fileList: [],
+    showFile: [],
     comments: []
 };
 const reviewSlice = createSlice({
@@ -18,11 +19,22 @@ const reviewSlice = createSlice({
     reducers: {
         setSubmissionInfo: (state, { payload: newInfo }) => {
             Object.assign(state, newInfo);
+            // Add the "showFile" state.
+            for (let i = 0; i < state.fileList.length; ++i) {
+                state.showFile[i] = false;
+            }
             state.loaded = true;
         },
+        toggleShowFile: (state, { payload: fileIndex }) => {
+            if (state.fileList[fileIndex].show) {
+                state.fileList[fileIndex].show = false;
+            } else {
+                state.fileList[fileIndex].show = true;
+            }
+        }
     }
 });
 
-export const { setSubmissionInfo } = reviewSlice.actions
+export const { setSubmissionInfo, toggleShowFile } = reviewSlice.actions
 
 export default reviewSlice.reducer

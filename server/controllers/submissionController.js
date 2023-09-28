@@ -93,9 +93,9 @@ submissionController.getSubmission = async (req, res, next) => {
             submission.approvedReviewerNames.push(userIdToName[reviewerId]);
         }
 
-        // Get pending file paths.
-        const pendingFilePaths = await fileModel.getPendingFilePathById(submission.fileIds);
-        submission.pendingFilePaths = pendingFilePaths;
+        // Get file info, such as pending file paths.
+        const fileList = await fileModel.getFileById(submission.fileIds);
+        submission.fileList = fileList;
         console.log("Submission = ", submission);
 
         res.locals.submission = submission;

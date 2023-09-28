@@ -3,9 +3,9 @@ import React from 'react';
 const ProjectInfo = props => {
   return (
     <div className='reviewProjectInfo'>
-      <h2>Project Info</h2>
+      <label className='reviewLabel1'>Project Info</label>
       <div>
-        <label>Project Name: </label>
+        <label reviewLabel2>Project Name: </label>
         <span>{props.projectName}</span>
       </div>
       <div>

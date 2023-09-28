@@ -34,22 +34,27 @@ fileModel.insertNewFile = async (file) => {
 }
 
 // Get pending file path by the Id. Return null if not found.
-fileModel.getPendingFilePathById = async (fileIds) => {
-    const pengingFilePathList = [];
+fileModel.getFileById = async (fileIds) => {
+    const fileList = [];
     for (let i = 0; i < fileIds.length; i++) {
         const queryString =
-            `SELECT pending_path AS "pendingPath" FROM files WHERE files.file_id = $1`;
+            `SELECT
+                file_id AS "fileId",
+                file_name AS "fileName",
+                approved_file_path AS "approvedFilePath",
+                submission_state AS "submissionState",
+                pending_path AS "pendingPath"
+            FROM files WHERE files.file_id = $1`;
         const params = [fileIds[i]];
         const results = await db.query(queryString, params);
-        console.log("To query pending path: ", params[0], "got: ", results.rows);
+        console.log("To query file: ", params[0], "got: ", results.rows);
         if (results.rows.length === 0) {
             return null;
         } else {
-            pengingFilePathList.push(results.rows[0].pendingPath);
-            console.log('pendingPath: ', pengingFilePathList);
+            fileList.push(results.rows[0]);
         }
     }
-    return pengingFilePathList;
+    return fileList;
 }
 
 module.exports = fileModel;
