@@ -4,6 +4,7 @@
     left: 50%;
     margin-left: -260px;
     margin-top: -300px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
@@ -207,4 +208,62 @@
 
 .submitFileState {
     margin-right: 10px;
+}
+
+.submitButtonAndCancel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-top: 30px;
+}
+
+.submitButton {
+    background-color: rgb(29, 155, 240);
+    height: 40px;
+    color: white;
+    border: none;
+    padding-right: 50px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 10px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+    width: 100%;
+    
+}
+
+.submitButton:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cancelButton {
+    background-color: #EDEDED;
+    height: 40px;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding-right: 50px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 10px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+    width: 100%;
+    
+}
+
+.cancelButton:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 }
