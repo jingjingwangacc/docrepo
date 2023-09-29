@@ -54,7 +54,10 @@ const ReviewContainer = (props) => {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                // Backend returns the new submission object.
+                // Clear the new comment box.
+                dispatch(setNewComment(''));
+                // Render the updated submission with the new comment.
+                // (backend returns the updated submission object)
                 dispatch(setSubmissionInfo({
                     commentList: res.submission.commentList
                 }));

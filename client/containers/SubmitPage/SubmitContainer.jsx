@@ -94,13 +94,14 @@ const SubmitContainer = () => {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                // Redirect to home page.
-                history.push('/');
+                // Redirect to the new submission's review page.
+                history.push('/review/' + res.submissionId);
             })
     }
 
     const handleCancel = () => {
-
+        // Redirect to home page.
+        history.push('/');
     }
 
 
