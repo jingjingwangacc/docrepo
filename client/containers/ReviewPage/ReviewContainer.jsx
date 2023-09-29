@@ -6,7 +6,7 @@ import Reviewer from '../../components/ReviewPage/Reviewer';
 import PlanViewer from '../../components/ReviewPage/PlanViewer';
 import Comment from '../../components/ReviewPage/Comment';
 import ActionButtons from '../../components/ReviewPage/ActionButtons';
-import { setSubmissionInfo } from '../../slice/reviewSlice';
+import { setSubmissionInfo, toggleShowFile } from '../../slice/reviewSlice';
 // import from child components...
 
 const ReviewContainer = (props) => {
@@ -65,6 +65,10 @@ const ReviewContainer = (props) => {
 
     }
 
+    const handleToggle = (fileIndex) => {
+        dispatch(toggleShowFile(fileIndex));
+    }
+
     return (
         <div className='reviewContainer'>
             <BasicInfo
@@ -78,7 +82,7 @@ const ReviewContainer = (props) => {
                     deadline={pageState.deadline} />
                 <Reviewer reviewerList={pageState.reviewerList} />
             </div>
-            <PlanViewer fileList={pageState.fileList} />
+            <PlanViewer fileList={pageState.fileList} showFile={pageState.showFile} handleToggle={handleToggle} />
             <Comment />
         </div>
     );

@@ -26,10 +26,11 @@ const reviewSlice = createSlice({
             state.loaded = true;
         },
         toggleShowFile: (state, { payload: fileIndex }) => {
-            if (state.fileList[fileIndex].show) {
-                state.fileList[fileIndex].show = false;
+            console.log("Toggle: ", fileIndex);
+            if (state.showFile[fileIndex]) {
+                state.showFile[fileIndex] = false;
             } else {
-                state.fileList[fileIndex].show = true;
+                state.showFile[fileIndex] = true;
             }
         }
     }
