@@ -5,10 +5,12 @@ const Comment = props => {
     <div>
       <h2>Comments</h2>
       <div className='reviewAddComment'>
-        <textarea className='reviewAddCommentTextArea' rows={8} placeholder="New comment"
-          onChange={(e) => { props.handleSetNewComment(e); }}
-          value={props.newComment}>
-        </textarea>
+        <div className='reviewAddCommentTextAreaDiv'>
+          <textarea className='reviewAddCommentTextArea' rows={8} placeholder="New comment"
+            onChange={(e) => { props.handleSetNewComment(e); }}
+            value={props.newComment}>
+          </textarea>
+        </div>
         <button class='reviewAddCommentButton'
           onClick={() => { props.handleAddNewComment(); }}>
           Add Comment
