@@ -47,6 +47,7 @@ const ReviewContainer = (props) => {
             },
             body: JSON.stringify({
                 userId: 1,
+                submissionId : pageState.submissionId,
                 comment: pageState.newComment,
                 resolved: false,
             })

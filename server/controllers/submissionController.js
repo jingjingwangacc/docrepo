@@ -108,4 +108,26 @@ submissionController.getSubmission = async (req, res, next) => {
     }
 };
 
+submissionController.addCommentIdToSubmission = async (req, res, next) => {
+    if (!res.locals.submission || !res.locals.comment) {
+        return next({
+            log: 'addCommentIdToSubmission() needs res.locals.submission and res.locals.comment.',
+            message: { err: 'Error adding comment to submission.' }
+        })
+    }
+    const submission = res.locals.submission;
+    const comment = res.locals.comment;
+
+    try {
+        submission.commentIds.push(comment.commentId);
+        submissionModel.updateSubmission(submission);
+        return next();
+    } catch (err) {
+        return next({
+            log: 'Failed to add comment to submission: ' + err,
+            mesaage: { err: 'Error adding comment to submission.' }
+        });
+    }
+}
+
 module.exports = submissionController;

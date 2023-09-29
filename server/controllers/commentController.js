@@ -1,7 +1,7 @@
 const commentModel = require('../models/commentModel.js');
 const commentController = {};
 
-commentController.handleAddComment = async (req, res, next) => {
+commentController.addComment = async (req, res, next) => {
     console.log("Handle add comment: ", req.body);
    try {
     // Create a new comment object.

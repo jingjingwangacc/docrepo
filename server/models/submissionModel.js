@@ -60,6 +60,37 @@ submissionModel.insertNewSubmission = async (submission) => {
     submission.submissionId = result.rows[0].submissionId;
 }
 
+// Update a submission row (whose Id is submission.submissionId) to match the
+// the current value of the submission object.
+submissionModel.updateSubmission = async (submission) => {
+    submission.creationTimestamp = new Date().toISOString();
+    console.log("To update: ", submission);
+    const queryString = `
+        UPDATE submissions
+        SET
+            submission_state = $1,
+            author_id = $2,
+            reviewer_ids = $3,
+            approved_reviewer_ids = $4,
+            project_name = $5,
+            client_name = $6,
+            submission_description = $7,
+            creation_timestamp = $8,
+            deadline = $9,
+            submission_timestamp = $10,
+            file_ids = $11,
+            comment_ids = $12
+        WHERE submission_id = $13`;
+    params = [submission.submissionState, submission.authorId,
+    submission.reviewerIds, submission.approvedReviewerIds,
+    submission.projectName, submission.clientName,
+    submission.submissionDescription, submission.creationTimestamp,
+    submission.deadline, submission.submissionTimestamp, submission.fileIds,
+    submission.commentIds, submission.submissionId];
+
+    const result = await db.query(queryString, params);
+}
+
 // Fetch a given submission by its unique Id. Return an array with 0 or 1 row.
 submissionModel.getSubmissionById = async (submissionId) => {
     const queryString =
