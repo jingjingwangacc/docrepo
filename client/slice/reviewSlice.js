@@ -14,6 +14,7 @@ const initialState = {
     commentList: [],
     newComment: ""
 };
+
 const reviewSlice = createSlice({
     name: 'review',
     initialState,

@@ -32,7 +32,7 @@ const ReviewContainer = (props) => {
                     commentList: res.commentList
                 }));
             });
-    })
+    });
 
     const handleSetNewComment = (e) => {
         dispatch(setNewComment(e.target.value));

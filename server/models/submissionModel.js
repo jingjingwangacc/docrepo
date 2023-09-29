@@ -119,6 +119,7 @@ submissionModel.getSubmissionById = async (submissionId) => {
 submissionModel.getSubmissionByAuthor = async (authorId, numResults = 10) => {
     const queryString = `
         SELECT 
+            submission_id AS "submissionId",
             submission_state AS "submissionState",
             author_id AS "authorId",
             reviewer_ids AS "reviewerIds",
@@ -136,7 +137,7 @@ submissionModel.getSubmissionByAuthor = async (authorId, numResults = 10) => {
             submissions.author_id = $1
         ORDER BY creation_timestamp DESC
         LIMIT $2`;
-    const params = { authorId, numResults };
+    const params = [authorId, numResults];
     const results = await db.query(queryString, params);
     return results.rows;
 }
@@ -145,6 +146,7 @@ submissionModel.getSubmissionByAuthor = async (authorId, numResults = 10) => {
 submissionModel.getSubmissionByAuthorAndState = async (authorId, state = PENDING, numResults = 10) => {
     const queryString = `
         SELECT
+            submission_id AS "submissionId",
             submission_state AS "submissionState",
             author_id AS "authorId",
             reviewer_ids AS "reviewerIds",
@@ -163,7 +165,44 @@ submissionModel.getSubmissionByAuthorAndState = async (authorId, state = PENDING
             submissions.state = $2";
         ORDER BY creation_timestamp DESC
         LIMIT $3`;
-    const params = { authorId, state, numResults };
+    const params = [authorId, state, numResults];
+    const results = await db.query(queryString, params);
+    return results.rows;
+}
+
+// Fetch submissions with a given reviewer from the database.
+// If notReviewedOnly = true, only return submissions that the
+// user hasn't reviewed yet.
+submissionModel.getSubmissionByReviewer = async (reviewerId, notReviewedOnly = false, numResults = 10) => {
+    let additionalCondition = "";
+    if (notReviewedOnly) {
+        additionalCondition = "AND $1 != ANY (submissions.approved_reviewer_ids";
+    }
+    const queryString = `
+        SELECT 
+            submission_id AS "submissionId",
+            submission_state AS "submissionState",
+            author_id AS "authorId",
+            reviewer_ids AS "reviewerIds",
+            approved_reviewer_ids AS "approvedReviewerIds",
+            project_name AS "projectName",
+            client_name AS "clientName",
+            submission_description AS "submissionDescription",
+            creation_timestamp AS "creationTimestamp",
+            deadline,
+            submission_timestamp AS "submissionTimestamp",
+            file_ids AS "fileIds",
+            comment_ids AS "commentIds"
+        FROM submissions
+        WHERE
+            $1 = ANY (submissions.reviewer_ids)
+        `
+        + additionalCondition +
+        `
+        ORDER BY creation_timestamp DESC
+        LIMIT $2
+        `;
+    const params = [reviewerId, numResults];
     const results = await db.query(queryString, params);
     return results.rows;
 }

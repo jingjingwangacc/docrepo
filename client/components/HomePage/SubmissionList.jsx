@@ -1,15 +1,20 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 
 const SubmissionList = props => {
     const submissionList = [];
+    const history = useHistory();
     for (let i = 0; i < props.submissionList.length; ++i) {
         const submission = props.submissionList[i];
         submissionList.push(
             <div className='submissionListItem'>
-                <label>{submission.submissionId}</label>
-                <label>{submission.authorName}</label>
-                <label className='submissionListDetailShort'>{submission.creationTimestamp}</label>
-                <label className='submissionListDetailShort'>{submission.submissionDescription}</label>
+                <a className='submissionListItemLink'
+                    href={"/review/" + submission.submissionId}>
+                    <label>{submission.submissionId}</label>
+                    <label>{submission.authorName}</label>
+                    <label className='submissionListDetailShort'>{submission.projectName}</label>
+                    <label className='submissionListDetailShort'>{submission.submissionDescription}</label>
+                </a>
             </div>
         );
     }
