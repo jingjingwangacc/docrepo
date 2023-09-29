@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import ProjectInfo from '../../components/SubmitPage/ProjectInfo';
 import Reviewer from '../../components/SubmitPage/Reviewer';
 import AddFile from '../../components/SubmitPage/AddFile';
@@ -10,6 +11,7 @@ const SubmitContainer = () => {
     // add pertinent state here
     const pageState = useSelector(state => state.submit);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleChangeProjectName = (e) => {
         dispatch(setProjectName(e.target.value));
@@ -93,6 +95,8 @@ const SubmitContainer = () => {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
+                // Redirect to home page.
+                history.push('/');
             })
     }
 
