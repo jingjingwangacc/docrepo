@@ -7,10 +7,8 @@ import PlanViewer from '../../components/ReviewPage/PlanViewer';
 import Comment from '../../components/ReviewPage/Comment';
 import ActionButtons from '../../components/ReviewPage/ActionButtons';
 import { setSubmissionInfo, toggleShowFile, setNewComment } from '../../slice/reviewSlice';
-// import from child components...
 
 const ReviewContainer = (props) => {
-    // add pertinent state here
     const pageState = useSelector(state => state.review);
     const dispatch = useDispatch();
 

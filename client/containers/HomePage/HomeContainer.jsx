@@ -1,16 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import UserBar from '../../components/HomePage/UserBar';
+import CreateNewButton from '../../components/HomePage/CreateNewButton';
+import IncomingSubmission from '../../components/HomePage/IncomingSubmission';
+import OutgoingReadySubmission from '../../components/HomePage/OutgoingReadySubmission';
+import OutgoingPendingSubmission from '../../components/HomePage/OutgoingPendingSubmission';
 
 const HomeContainer = (props) => {
+    const pageState = useSelector(state => state.home);
+    const dispatch = useDispatch();
+
     return (
-        <div className="mainContainer">
-            <h1>Home Page</h1>
-            <div>
-                <Link to="/submit">New Submission</Link>
-            </div>
-            <div>
-                <Link to="/review/1">Review</Link>
-            </div>
+        <div className="homeContainer">
+            <UserBar />
+            <CreateNewButton />
+            <IncomingSubmission submissionList={pageState.incomingSubmissionList} />
+            <OutgoingReadySubmission submissionList={pageState.outgoingReadySubmissionList} />
+            <OutgoingPendingSubmission submissionList={pageState.outgoingPendingSubmissionList} />
         </div>
     );
 };

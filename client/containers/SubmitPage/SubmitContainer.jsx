@@ -8,7 +8,6 @@ import ActionButtons from '../../components/SubmitPage/ActionButtons';
 import { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer, addFile, setFileUploadCompleted, deleteFile } from '../../slice/submitSlice';
 
 const SubmitContainer = () => {
-    // add pertinent state here
     const pageState = useSelector(state => state.submit);
     const dispatch = useDispatch();
     const history = useHistory();
