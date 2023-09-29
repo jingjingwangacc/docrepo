@@ -16,6 +16,8 @@ router.post('/',
     },
     submissionController.getSubmission,
     submissionController.addCommentIdToSubmission,
+    // Re-read the new submission object.
+    submissionController.getSubmission,
     (req, res) => res.status(200).json(
         {
             submission: res.locals.submission,

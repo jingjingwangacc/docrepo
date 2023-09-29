@@ -11,7 +11,7 @@ const initialState = {
     reviewerList: [],
     fileList: [],
     showFile: [],
-    comments: [],
+    commentList: [],
     newComment: ""
 };
 const reviewSlice = createSlice({

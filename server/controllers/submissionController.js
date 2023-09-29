@@ -1,6 +1,7 @@
 const submissionModel = require('../models/submissionModel.js');
 const userModel = require('../models/userModel.js');
 const fileModel = require('../models/fileModel.js');
+const commentModel = require('../models/commentModel.js');
 
 const submissionController = {};
 
@@ -50,10 +51,17 @@ submissionController.getSubmission = async (req, res, next) => {
         const submission = submissions[0];
         console.log("Submission: ", submission);
 
-        // Retrieve author's name, and reviewers' names.
+        // Retrieve comments.
+        const comments = await commentModel.getCommentById(submission.commentIds);
+        submission.commentList = comments;
+
+        // Retrieve author's name, reviewers' names, and commenter's names.
         const userIds = [submission.authorId]
         for (let i = 0; i < submission.reviewerIds.length; ++i) {
             userIds.push(submission.reviewerIds[i]);
+        }
+        for (let i = 0; i < submission.commentList.length; ++i) {
+            userIds.push(submission.commentList[i].commenter_id);
         }
         const userIdToName = await userModel.getUserNameByIds(userIds);
         console.log("Map: ", userIdToName);
@@ -93,10 +101,22 @@ submissionController.getSubmission = async (req, res, next) => {
             submission.approvedReviewerNames.push(userIdToName[reviewerId]);
         }
 
+        // Assign commenter names.
+        for (let i = 0; i < submission.commentList.length; ++i) {
+            let commenterId = submission.commentList[i].commenterId;
+            if (!(commenterId in userIdToName)) {
+                return next({
+                    log: "Cannot find commenter Id: " + commenterId,
+                    message: { err: 'Error while getting submission.' }
+                });
+            }
+            submission.commentList[i].commenterName = userIdToName[commenterId];
+        }
+
         // Get file info, such as pending file paths.
         const fileList = await fileModel.getFileById(submission.fileIds);
         submission.fileList = fileList;
-        console.log("Submission = ", submission);
+        console.log("Fully populated submission = ", submission);
 
         res.locals.submission = submission;
         return next();

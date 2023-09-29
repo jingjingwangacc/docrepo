@@ -370,7 +370,38 @@
     box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
 }
 
+.reviewComment {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.reviewCommentList {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewOneComment {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 20px;
+    box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
+}
+
+.reviewOneCommentText {
+    white-space: pre-wrap;
+}
+
 .reviewAddComment {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 .reviewAddCommentTextAreaDiv {

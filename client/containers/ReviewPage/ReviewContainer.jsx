@@ -30,7 +30,8 @@ const ReviewContainer = (props) => {
                     description: res.submissionDescription,
                     deadline: res.deadline,
                     reviewerList: res.reviewerNames,
-                    fileList: res.fileList
+                    fileList: res.fileList,
+                    commentList: res.commentList
                 }));
             });
     })
@@ -55,6 +56,10 @@ const ReviewContainer = (props) => {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
+                // Backend returns the new submission object.
+                dispatch(setSubmissionInfo({
+                    commentList: res.submission.commentList
+                }));
             })
     }
 
@@ -80,6 +85,7 @@ const ReviewContainer = (props) => {
                 showFile={pageState.showFile}
                 handleToggle={handleToggle} />
             <Comment
+                commentList={pageState.commentList}
                 newComment={pageState.newComment}
                 handleSetNewComment={handleSetNewComment}
                 handleAddNewComment={handleAddNewComment} />
