@@ -10,7 +10,7 @@ const fileModel = {}
 // have a valid fileId. Caller shall then set the necessary information in the
 // object, and call insertNewFile().
 //
-// Also, calling get...() methods to fetch user(s) from database will also
+// Also, calling get...() methods to fetch file(s) from database will also
 // return such object(s).
 fileModel.newFileObject = () => {
     return {

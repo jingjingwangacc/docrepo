@@ -6,7 +6,7 @@ import Reviewer from '../../components/ReviewPage/Reviewer';
 import PlanViewer from '../../components/ReviewPage/PlanViewer';
 import Comment from '../../components/ReviewPage/Comment';
 import ActionButtons from '../../components/ReviewPage/ActionButtons';
-import { setSubmissionInfo, toggleShowFile } from '../../slice/reviewSlice';
+import { setSubmissionInfo, toggleShowFile, setNewComment } from '../../slice/reviewSlice';
 // import from child components...
 
 const ReviewContainer = (props) => {
@@ -35,34 +35,26 @@ const ReviewContainer = (props) => {
             });
     })
 
-    const handleComment = () => {
-        dispatch(addComment());
+    const handleSetNewComment = (e) => {
+        dispatch(setNewComment(e.target.value));
     };
 
-    const handleSubmit = () => {
-        fetch('/api/submission', {
+    const handleAddNewComment = () => {
+        fetch('/api/comment', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 userId: 1,
-                projectName: pageState.projectName,
-                clientName: pageState.clientName,
-                deadline: pageState.deadline,
-                submissionDescription: pageState.description,
-                reviewerNameList: pageState.reviewerList
-
+                comment: pageState.newComment,
+                resolved: false,
             })
         })
             .then(res => res.json())
             .then(res => {
                 console.log(res);
             })
-    }
-
-    const handleCancel = () => {
-
     }
 
     const handleToggle = (fileIndex) => {
@@ -82,8 +74,14 @@ const ReviewContainer = (props) => {
                     deadline={pageState.deadline} />
                 <Reviewer reviewerList={pageState.reviewerList} />
             </div>
-            <PlanViewer fileList={pageState.fileList} showFile={pageState.showFile} handleToggle={handleToggle} />
-            <Comment />
+            <PlanViewer
+                fileList={pageState.fileList}
+                showFile={pageState.showFile}
+                handleToggle={handleToggle} />
+            <Comment
+                newComment={pageState.newComment}
+                handleSetNewComment={handleSetNewComment}
+                handleAddNewComment={handleAddNewComment} />
         </div>
     );
 };

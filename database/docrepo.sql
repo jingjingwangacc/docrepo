@@ -69,13 +69,12 @@ CREATE TABLE public.files (
 
 /* A comment on a submission */
 CREATE TABLE public.comments (
-    submission_id BIGINT NOT NULL,
-    comment_id BIGINT NOT NULL,
+    comment_id BIGSERIAL UNIQUE NOT NULL,
     commenter_id BIGINT NOT NULL,
     creation_timestamp TIMESTAMP NOT NULL,
     comment VARCHAR(16384),
     resolved BOOLEAN NOT NULL,
-    PRIMARY KEY (submission_id, comment_id)
+    PRIMARY KEY (comment_id)
 ) WITH (
   OIDS=FALSE
 );

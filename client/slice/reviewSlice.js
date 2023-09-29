@@ -11,7 +11,8 @@ const initialState = {
     reviewerList: [],
     fileList: [],
     showFile: [],
-    comments: []
+    comments: [],
+    newComment: ""
 };
 const reviewSlice = createSlice({
     name: 'review',
@@ -32,10 +33,13 @@ const reviewSlice = createSlice({
             } else {
                 state.showFile[fileIndex] = true;
             }
+        },
+        setNewComment: (state, { payload: newComment }) => {
+            state.newComment = newComment;
         }
     }
 });
 
-export const { setSubmissionInfo, toggleShowFile } = reviewSlice.actions
+export const { setSubmissionInfo, toggleShowFile, setNewComment } = reviewSlice.actions
 
 export default reviewSlice.reducer

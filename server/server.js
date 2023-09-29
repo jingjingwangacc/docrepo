@@ -6,6 +6,7 @@ const app = express();
 const submissionRouter = require('./routes/submission');
 const userRouter = require('./routes/user');
 const fileRouter = require('./routes/file');
+const commentRouter = require('./routes/comment');
 
 const PORT = 3000;
 
@@ -36,6 +37,7 @@ app.use('/', express.static(path.resolve(__dirname, '../client')));
 app.use('/api/submission', submissionRouter);
 app.use('/api/user', userRouter);
 app.use('/api/file', fileRouter);
+app.use('/api/comment', commentRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

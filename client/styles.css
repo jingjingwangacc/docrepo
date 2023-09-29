@@ -346,6 +346,7 @@
     margin-top: 10px;
     margin-bottom: 0px;
     padding: 10px;
+    box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
 }
 
 .reviewOneFileName {
@@ -367,4 +368,43 @@
     height: 600px;
     border-radius: 30px;
     box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
+}
+
+.reviewAddComment {
+
+}
+
+.reviewAddCommentTextArea {
+    width: 100%;
+    border-color: rgb(29, 155, 240);
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
+}
+
+.reviewAddCommentButton {
+    background-color: rgb(29, 155, 240);
+    height: 40px;
+    color: white;
+    border: none;
+    padding-right: 50px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 10px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+    width: 200px;
+    
+}
+
+.reviewAddCommentButton:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 }
