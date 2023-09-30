@@ -82,4 +82,20 @@ userModel.getUserNameByIds = async (userIds) => {
     return idToName;
 }
 
+userModel.getUserByNameAndPassword = async (userName, pwd) => {
+    const queryString =
+        `SELECT
+            user_id AS "userId",
+            user_name AS "userName"
+        FROM users
+        WHERE users.user_name = $1 AND users.user_pwd = $2`;
+    const params = [userName, pwd];
+    const results = await db.query(queryString, params);
+    if (results.rows.length === 0) {
+        return null;
+    } else {
+        return results.rows[0];
+    }
+}
+
 module.exports = userModel;

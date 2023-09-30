@@ -23,4 +23,17 @@ userController.createUser = async (req, res, next) => {
     }
 };
 
+userController.verifyUserNameAndPassword = async (req, res, next) => {
+    try {
+        const user = await userModel.getUserByNameAndPassword(req.body.userName, req.body.userPwd);
+        res.locals.user = user;
+        return next();
+    } catch (err) {
+        return next({
+            log: 'Failed to verify user name and password' + err,
+            mesaage: { err: 'Failed to verify user name and password.' }
+        });
+    }
+}
+
 module.exports = userController;
