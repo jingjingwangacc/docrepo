@@ -6,6 +6,7 @@ import OutgoingReadySubmission from '../../components/HomePage/OutgoingReadySubm
 import OutgoingPendingSubmission from '../../components/HomePage/OutgoingPendingSubmission';
 import { setSubmissionLists } from '../../slice/homeSlice'
 import { useHistory } from "react-router-dom";
+import HeadBar from "../../components/HeadBar"
 
 const HomeContainer = (props) => {
     const pageState = useSelector(state => state.home);
@@ -48,11 +49,14 @@ const HomeContainer = (props) => {
     }
 
     return (
-        <div className="homeContainer">
-            <CreateNewButton handleCreateNewClick={handleCreateNewClick} />
-            <IncomingSubmission submissionList={pageState.incomingSubmissionList} />
-            <OutgoingReadySubmission submissionList={pageState.outgoingReadySubmissionList} />
-            <OutgoingPendingSubmission submissionList={pageState.outgoingPendingSubmissionList} />
+        <div className="mainContainer">
+            <HeadBar />
+            <div className="homeContainer">
+                <CreateNewButton handleCreateNewClick={handleCreateNewClick} />
+                <IncomingSubmission submissionList={pageState.incomingSubmissionList} />
+                <OutgoingReadySubmission submissionList={pageState.outgoingReadySubmissionList} />
+                <OutgoingPendingSubmission submissionList={pageState.outgoingPendingSubmissionList} />
+            </div>
         </div>
     );
 };

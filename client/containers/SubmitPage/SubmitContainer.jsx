@@ -6,6 +6,7 @@ import Reviewer from '../../components/SubmitPage/Reviewer';
 import AddFile from '../../components/SubmitPage/AddFile';
 import ActionButtons from '../../components/SubmitPage/ActionButtons';
 import { setProjectName, setClientName, setDescription, setDeadline, setReviewer, addReviewer, deleteReviewer, addFile, setFileUploadCompleted, deleteFile } from '../../slice/submitSlice';
+import HeadBar from "../../components/HeadBar"
 
 const SubmitContainer = () => {
     const pageState = useSelector(state => state.submit);
@@ -106,25 +107,29 @@ const SubmitContainer = () => {
 
 
     return (
-        <div className="submitContainer">
-            <ProjectInfo
-                projectName={pageState.projectName} handleChangeProjectName={handleChangeProjectName}
-                clientName={pageState.clientName} handleChangeClientName={handleChangeClientName}
-                description={pageState.description} handleChangeDescription={handleChangeDescription}
-                deadline={pageState.deadline} handleChangeDeadline={handleChangeDeadline} />
-            <Reviewer
-                reviewerList={pageState.reviewerList}
-                newReviewer={pageState.newReviewer}
-                handleChangeReviewer={handleChangeReviewer}
-                handleAddReviewer={handleAddReviewer}
-                handleDeleteReviewer={handleDeleteReviewer}
-            />
-            <AddFile
-                fileList={pageState.fileList}
-                handleAddFile={handleAddFile}
-                handleDeleteFile={handleDeleteFile}
-            />
-            <ActionButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />
+        <div className="mainContainer">
+            <HeadBar />
+
+            <div className="submitContainer">
+                <ProjectInfo
+                    projectName={pageState.projectName} handleChangeProjectName={handleChangeProjectName}
+                    clientName={pageState.clientName} handleChangeClientName={handleChangeClientName}
+                    description={pageState.description} handleChangeDescription={handleChangeDescription}
+                    deadline={pageState.deadline} handleChangeDeadline={handleChangeDeadline} />
+                <Reviewer
+                    reviewerList={pageState.reviewerList}
+                    newReviewer={pageState.newReviewer}
+                    handleChangeReviewer={handleChangeReviewer}
+                    handleAddReviewer={handleAddReviewer}
+                    handleDeleteReviewer={handleDeleteReviewer}
+                />
+                <AddFile
+                    fileList={pageState.fileList}
+                    handleAddFile={handleAddFile}
+                    handleDeleteFile={handleDeleteFile}
+                />
+                <ActionButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />
+            </div>
         </div>
     );
 };

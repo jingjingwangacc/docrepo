@@ -7,6 +7,7 @@ import PlanViewer from '../../components/ReviewPage/PlanViewer';
 import Comment from '../../components/ReviewPage/Comment';
 import ActionButtons from '../../components/ReviewPage/ActionButtons';
 import { setSubmissionInfo, toggleShowFile, setNewComment } from '../../slice/reviewSlice';
+import HeadBar from "../../components/HeadBar"
 
 const ReviewContainer = (props) => {
     const pageState = useSelector(state => state.review);
@@ -46,7 +47,7 @@ const ReviewContainer = (props) => {
             },
             body: JSON.stringify({
                 userId: 1,
-                submissionId : pageState.submissionId,
+                submissionId: pageState.submissionId,
                 comment: pageState.newComment,
                 resolved: false,
             })
@@ -69,27 +70,30 @@ const ReviewContainer = (props) => {
     }
 
     return (
-        <div className='reviewContainer'>
-            <BasicInfo
-                submissionId={pageState.submissionId}
-                authorName={pageState.authorName} />
-            <div className='reviewProject'>
-                <ProjectInfo
-                    projectName={pageState.projectName}
-                    clientName={pageState.clientName}
-                    description={pageState.description}
-                    deadline={pageState.deadline} />
-                <Reviewer reviewerList={pageState.reviewerList} />
+        <div className="mainContainer">
+            <HeadBar />
+            <div className='reviewContainer'>
+                <BasicInfo
+                    submissionId={pageState.submissionId}
+                    authorName={pageState.authorName} />
+                <div className='reviewProject'>
+                    <ProjectInfo
+                        projectName={pageState.projectName}
+                        clientName={pageState.clientName}
+                        description={pageState.description}
+                        deadline={pageState.deadline} />
+                    <Reviewer reviewerList={pageState.reviewerList} />
+                </div>
+                <PlanViewer
+                    fileList={pageState.fileList}
+                    showFile={pageState.showFile}
+                    handleToggle={handleToggle} />
+                <Comment
+                    commentList={pageState.commentList}
+                    newComment={pageState.newComment}
+                    handleSetNewComment={handleSetNewComment}
+                    handleAddNewComment={handleAddNewComment} />
             </div>
-            <PlanViewer
-                fileList={pageState.fileList}
-                showFile={pageState.showFile}
-                handleToggle={handleToggle} />
-            <Comment
-                commentList={pageState.commentList}
-                newComment={pageState.newComment}
-                handleSetNewComment={handleSetNewComment}
-                handleAddNewComment={handleAddNewComment} />
         </div>
     );
 };
