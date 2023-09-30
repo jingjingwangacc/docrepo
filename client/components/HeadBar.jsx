@@ -3,7 +3,9 @@ import React from 'react';
 const HeadBar = props => {
     return (
         <div className='headBar'>
-            Review Portal
+            <div className='logo'>
+                Review Portal
+            </div>
         </div>
     );
 };

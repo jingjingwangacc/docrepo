@@ -1,3 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.mainContainer {
+    display:flex;
+    flex-direction: column;
+}
+
+.headBar {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(29, 155, 240, 1);
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
+}
+
+.logo {
+    height: 80px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 30px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
 .submitContainer {
     position: absolute;
     left: 50%;
@@ -269,8 +295,8 @@
 .reviewContainer {
     position: absolute;
     left: 50%;
-    margin-left: -500px;
-    margin-top: 50px;
+    margin-left: -600px;
+    margin-top: 100px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -278,7 +304,7 @@
     border: none;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    width: 1000px;
+    width: 1200px;
 }
 
 .reviewBasicInfo {
@@ -447,8 +473,8 @@
 .homeContainer {
     position: absolute;
     left: 50%;
-    margin-left: -500px;
-    margin-top: 50px;
+    margin-left: -600px;
+    margin-top: 100px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -456,7 +482,13 @@
     border: none;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    width: 1000px;
+    width: 1200px;
+}
+
+.createNewButtonDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .createNewButton {
