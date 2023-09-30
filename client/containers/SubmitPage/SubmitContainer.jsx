@@ -103,8 +103,9 @@ const SubmitContainer = () => {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                // Redirect to the new submission's review page.
-                history.push('/review/' + res.submissionId);
+                // Redirect to the home page.
+                history.push('/');
+                // history.push('/review/' + res.submissionId);
             })
     }
 
