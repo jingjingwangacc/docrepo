@@ -3,8 +3,8 @@ import SubmissionList from './SubmissionList.jsx'
 
 const OutgoingPendingSubmission = props => {
     return (
-        <div className='outgoingPendingSubmissionList'>
-            <h2>Outgoing Submissions: Pending Review</h2>
+        <div className='labelAndSubmissionList'>
+            <div className="submissionListLabel">Outgoing Submissions: Pending Review</div>
             <SubmissionList submissionList={props.submissionList} />
         </div>
     );

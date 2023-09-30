@@ -438,9 +438,122 @@
     transition: box-shadow 0.15s;
     vertical-align: top;
     width: 200px;
-    
 }
 
 .reviewAddCommentButton:hover {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.homeContainer {
+    position: absolute;
+    left: 50%;
+    margin-left: -500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1000px;
+}
+
+.createNewButton {
+    background-color: rgb(29, 155, 240);
+    height: 40px;
+    color: white;
+    border: none;
+    padding-right: 50px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 10px;
+    transition: box-shadow 0.15s;
+    vertical-align: top;
+    width: 200px;
+}
+
+.createNewButton:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.labelAndSubmissionList {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 10px 0px;
+    border-radius: 30px;
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.submissionListLabel {
+    background-color: rgba(29, 155, 240, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.submissionList {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.submissionListHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.submissionListItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    font-size: 15px;
+    box-shadow: none;
+    border-color: rgb(208, 207, 208);
+    border-bottom-style: solid;
+    align-items: center;
+    border-width: 1px;
+
+}
+
+.submissionListItemLink {
+    text-decoration: none;
+    color: black;
+}
+
+.submissionListIdCell {
+    width: 15%;
+}
+
+.submissionListAuthorCell {
+    width: 20%;
+}
+
+.submissionListProjectCell {
+    width: 20%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.submissionListDescriptionCell {
+    width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
 }

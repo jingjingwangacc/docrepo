@@ -8,13 +8,26 @@ const SubmissionList = props => {
         const submission = props.submissionList[i];
         submissionList.push(
             <div className='submissionListItem'>
-                <a className='submissionListItemLink'
-                    href={"/review/" + submission.submissionId}>
-                    <label>{submission.submissionId}</label>
-                    <label>{submission.authorName}</label>
-                    <label className='submissionListDetailShort'>{submission.projectName}</label>
-                    <label className='submissionListDetailShort'>{submission.submissionDescription}</label>
-                </a>
+                <div className='submissionListIdCell'>
+                    <a className='submissionListItemLink' href={"/review/" + submission.submissionId}>
+                        {submission.submissionId}
+                    </a>
+                </div>
+                <div className='submissionListAuthorCell'>
+                    <a className='submissionListItemLink' href={"/review/" + submission.submissionId}>
+                        {submission.authorName}
+                    </a>
+                </div>
+                <div className='submissionListProjectCell'>
+                    <a className='submissionListItemLink' href={"/review/" + submission.submissionId}>
+                        {submission.projectName}
+                    </a>
+                </div>
+                <div className='submissionListDescriptionCell'>
+                    <a className='submissionListItemLink' href={"/review/" + submission.submissionId}>
+                        {submission.submissionDescription}
+                    </a>
+                </div>
             </div>
         );
     }
@@ -22,10 +35,10 @@ const SubmissionList = props => {
     return (
         <div className='submissionList'>
             <div className='submissionListHeader'>
-                <label>Submission Id</label>
-                <label>Author</label>
-                <label>Project</label>
-                <label>Description</label>
+                <label className='submissionListIdCell'>Submission Id</label>
+                <label className='submissionListAuthorCell'>Author</label>
+                <label className='submissionListProjectCell'>Project</label>
+                <label className='submissionListDescriptionCell'>Description</label>
             </div>
             {submissionList}
         </div>

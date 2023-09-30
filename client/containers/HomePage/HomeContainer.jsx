@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import UserBar from '../../components/HomePage/UserBar';
 import CreateNewButton from '../../components/HomePage/CreateNewButton';
 import IncomingSubmission from '../../components/HomePage/IncomingSubmission';
 import OutgoingReadySubmission from '../../components/HomePage/OutgoingReadySubmission';
 import OutgoingPendingSubmission from '../../components/HomePage/OutgoingPendingSubmission';
 import { setSubmissionLists } from '../../slice/homeSlice'
+import { useHistory } from "react-router-dom";
 
 const HomeContainer = (props) => {
     const pageState = useSelector(state => state.home);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         if (pageState.loaded) {
@@ -42,12 +43,13 @@ const HomeContainer = (props) => {
             });
     });
 
-    console.log(pageState);
+    const handleCreateNewClick = () => {
+        history.push("/submit");
+    }
 
     return (
         <div className="homeContainer">
-            <UserBar />
-            <CreateNewButton />
+            <CreateNewButton handleCreateNewClick={handleCreateNewClick} />
             <IncomingSubmission submissionList={pageState.incomingSubmissionList} />
             <OutgoingReadySubmission submissionList={pageState.outgoingReadySubmissionList} />
             <OutgoingPendingSubmission submissionList={pageState.outgoingPendingSubmissionList} />
