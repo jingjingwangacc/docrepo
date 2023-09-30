@@ -6,7 +6,7 @@ const HeadBar = props => {
     return (
         <div className='headBar'>
             <div className='logo' onClick={() => { history.push('/'); }}>
-                Review Portal
+                Team Review
             </div>
         </div>
     );
