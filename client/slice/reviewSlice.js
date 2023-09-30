@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    loaded: false,
     submissionId: "",
     authorName: "",
     projectName: "",
@@ -25,7 +24,6 @@ const reviewSlice = createSlice({
             for (let i = 0; i < state.fileList.length; ++i) {
                 state.showFile[i] = false;
             }
-            state.loaded = true;
         },
         toggleShowFile: (state, { payload: fileIndex }) => {
             console.log("Toggle: ", fileIndex);

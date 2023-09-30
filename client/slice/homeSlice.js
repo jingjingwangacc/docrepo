@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    loaded: false,
-    userId: 1,
-    userName: "",
     incomingSubmissionList: [],
     outgoingReadySubmissionList: [],
     outgoingPendingSubmissionList: []
@@ -17,7 +14,6 @@ const homeSlice = createSlice({
             state.incomingSubmissionList = submissionLists.incomingSubmissionList;
             state.outgoingReadySubmissionList = submissionLists.outgoingReadySubmissionList;
             state.outgoingPendingSubmissionList = submissionLists.outgoingPendingSubmissionList;
-            state.loaded = true;
         },
     }
 });

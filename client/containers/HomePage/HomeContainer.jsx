@@ -9,15 +9,18 @@ import { useHistory } from "react-router-dom";
 import HeadBar from "../../components/HeadBar"
 
 const HomeContainer = (props) => {
+    const loginState = useSelector(state => state.login);
     const pageState = useSelector(state => state.home);
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        if (pageState.loaded) {
-            return;
+        console.log("Login state: ", loginState);
+        if (!loginState.loggedIn) {
+            // Not logged in, go to log in page.
+            history.push('/login');
         }
-        fetch('/api/submission/userrelated/' + pageState.userId)
+        fetch('/api/submission/userrelated/' + loginState.userId)
             .then(res => res.json())
             .then(res => {
                 console.log("Received submissions: ", res);
@@ -42,7 +45,7 @@ const HomeContainer = (props) => {
                     outgoingPendingSubmissionList: outgoingPending
                 }));
             });
-    });
+    }, []);
 
     const handleCreateNewClick = () => {
         history.push("/submit");

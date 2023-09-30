@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import ProjectInfo from '../../components/SubmitPage/ProjectInfo';
@@ -9,9 +9,17 @@ import { setProjectName, setClientName, setDescription, setDeadline, setReviewer
 import HeadBar from "../../components/HeadBar"
 
 const SubmitContainer = () => {
+    const loginState = useSelector(state => state.login);
     const pageState = useSelector(state => state.submit);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        if (!loginState.loggedIn) {
+            // Not logged in, go to log in page.
+            history.push('/login');
+        }
+    });
 
     const handleChangeProjectName = (e) => {
         dispatch(setProjectName(e.target.value));
@@ -83,7 +91,7 @@ const SubmitContainer = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: 1,
+                userId: loginState.userId,
                 projectName: pageState.projectName,
                 clientName: pageState.clientName,
                 deadline: pageState.deadline,

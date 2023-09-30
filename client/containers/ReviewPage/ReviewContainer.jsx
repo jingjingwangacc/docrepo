@@ -8,16 +8,21 @@ import Comment from '../../components/ReviewPage/Comment';
 import ActionButtons from '../../components/ReviewPage/ActionButtons';
 import { setSubmissionInfo, toggleShowFile, setNewComment } from '../../slice/reviewSlice';
 import HeadBar from "../../components/HeadBar"
+import { useHistory } from "react-router-dom";
 
 const ReviewContainer = (props) => {
+    const loginState = useSelector(state => state.login);
     const pageState = useSelector(state => state.review);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
-        if (pageState.loaded) {
-            return;
+        if (!loginState.loggedIn) {
+            // Not logged in, go to log in page.
+            history.push('/login');
         }
-        fetch('/api/submission/' + props.match.params.id)
+        const submissionId = props.match.params.id;
+        fetch('/api/submission/' + submissionId)
             .then(res => res.json())
             .then(res => {
                 console.log("Received submission data: ", res);
@@ -33,7 +38,7 @@ const ReviewContainer = (props) => {
                     commentList: res.commentList
                 }));
             });
-    });
+    }, []);
 
     const handleSetNewComment = (e) => {
         dispatch(setNewComment(e.target.value));
@@ -46,7 +51,7 @@ const ReviewContainer = (props) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: 1,
+                userId: loginState.userId,
                 submissionId: pageState.submissionId,
                 comment: pageState.newComment,
                 resolved: false,
