@@ -2,12 +2,12 @@ import React from 'react';
 
 const ActionButtons = props => {
     return (
-        <div class='submitButtonAndCancel'>
+        <div className='submitButtonAndCancel'>
             <div>
-                <button class='submitButton' onClick={props.handleSubmit}>Submit</button>
+                <button className='submitButton' onClick={props.handleSubmit}>Submit</button>
             </div>
             <div>
-                <button class='cancelButton'onClick={props.handleCancel}>Cancel</button>
+                <button className='cancelButton'onClick={props.handleCancel}>Cancel</button>
             </div>
         </div >
     );

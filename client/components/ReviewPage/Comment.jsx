@@ -27,7 +27,7 @@ const Comment = props => {
             value={props.newComment}>
           </textarea>
         </div>
-        <button class='reviewAddCommentButton'
+        <button className='reviewAddCommentButton'
           onClick={() => { props.handleAddNewComment(); }}>
           Add Comment
         </button>

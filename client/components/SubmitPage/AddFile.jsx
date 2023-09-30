@@ -7,8 +7,8 @@ const AddFile = props => {
             <div className='submitFile'>
                 <label>{props.fileList[i].fileName}</label>
                 <div className='submitFileStateAndButton'>
-                    <label class='submitFileState'>{props.fileList[i].uploadCompleted ? "[Uploaded]" : "[Uploading...]"}</label>
-                    <button class='removeButton' onClick={() => props.handleDeleteFile(i)}>X</button>
+                    <label className='submitFileState'>{props.fileList[i].uploadCompleted ? "[Uploaded]" : "[Uploading...]"}</label>
+                    <button className='removeButton' onClick={() => props.handleDeleteFile(i)}>X</button>
                 </div>
             </div>));
     }
