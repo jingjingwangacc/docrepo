@@ -4,7 +4,9 @@ const HeadBar = props => {
     return (
         <div className='headBar'>
             <div className='logo'>
-                Review Portal
+                <a className='logoLink' href={"/"}>
+                    Review Portal
+                </a>
             </div>
         </div>
     );

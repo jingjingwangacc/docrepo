@@ -24,6 +24,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.logoLink {
+    text-decoration: none;
+    color: white;
+}
+
 .submitContainer {
     position: absolute;
     left: 50%;
@@ -382,7 +387,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .reviewOneFile:hover {
