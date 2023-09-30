@@ -160,24 +160,11 @@ submissionController.addCommentIdToSubmission = async (req, res, next) => {
 // author name and reviewer names. It won't fill in file / comment details.
 submissionController.listSubmissionsByAuthor = async (req, res, next) => {
     const authorId = req.params.userId;
-    const pendingOnly = false;
-    if (req.body.pendingOnly) {
-        pendingOnly = true;
-    }
     const numResults = 20;
-    if (req.body.numResults > 0) {
-        numResults = req.body.numResults;
-    }
     console.log("Get submission authored by Id: ", authorId);
-    console.log("pendingOnly = ", pendingOnly);
-    console.log("numResults = ", numResults);
     try {
         let submissions = [];
-        if (pendingOnly) {
-            submissions = await submissionModel.getSubmissionByAuthorAndState(authorId, submissionModel.PENDING, numResults);
-        } else {
-            submissions = await submissionModel.getSubmissionByAuthor(authorId, numResults);
-        }
+        submissions = await submissionModel.getSubmissionByAuthor(authorId, numResults);
         for (let i = 0; i < submissions.length; ++i) {
             if (!await retrieveUserNames(submissions[i])) {
                 return next({
@@ -202,16 +189,8 @@ submissionController.listSubmissionsByAuthor = async (req, res, next) => {
 submissionController.listSubmissionsByReviewer = async (req, res, next) => {
     const reviewerId = req.params.userId;
     const pendingOnly = false;
-    if (req.body.pendingOnly) {
-        pendingOnly = true;
-    }
     const numResults = 20;
-    if (req.body.numResults > 0) {
-        numResults = req.body.numResults;
-    }
     console.log("Get submission by reviewer: ", reviewerId);
-    console.log("pendingOnly = ", pendingOnly);
-    console.log("numResults = ", numResults);
     try {
         let submissions = await submissionModel.getSubmissionByReviewer(reviewerId, pendingOnly, numResults);
         for (let i = 0; i < submissions.length; ++i) {
