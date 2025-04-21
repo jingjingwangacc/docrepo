@@ -9,7 +9,7 @@ const SubmissionList = props => {
         submissionList.push(
             <div className='submissionListItem' onClick={() => { history.push('/review/' + submission.submissionId) }}>
                 <div className='submissionListIdCell'>
-                    {/* <a href={'/review' + subminssion.submissionId}>{submission.submissionId}</a> */}
+                    {/* <a href={'/review' + submission.submissionId}>{submission.submissionId}</a> */}
                     {submission.submissionId}
                 </div>
                 <div className='submissionListAuthorCell'>
